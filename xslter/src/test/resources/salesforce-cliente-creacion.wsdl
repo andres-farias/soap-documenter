@@ -1,0 +1,1354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions name="CrearClienteBice" targetNamespace="http://www.example.org/CrearClienteBice/"
+                     xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/"
+                     xmlns:WL5G3N1="http://www.example.org/CrearClienteBice/"
+                     xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <!-- Declaración de tipos -->
+    <WL5G3N0:types>
+        <WL5G3N0:documentation>Los tipos utilizados para realizar las operaciones.</WL5G3N0:documentation>
+        <xsd:schema elementFormDefault="qualified"
+                    targetNamespace="http://www.example.org/CrearClienteBice/"
+                    xmlns:tns="http://www.example.org/CrearClienteBice/"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+            <xsd:element name="CrearCleinteBice">
+
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="es">Estructura de datos para el payload de entrada que reunen todos los
+                        datos necesarios para crear un cliente.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="indicadorCif" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:documentation xml:lang="es">El indicador CIF es requerido como evidencia de la
+                                    creación del usuario en CIF. Este valor es alfanumérico.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="indicadorSebra" type="xsd:string"/>
+                        <xsd:element name="indicadorMagic" type="xsd:string"/>
+                        <xsd:element name="Cif" type="tns:CifRequestType"/>
+                        <xsd:element name="Sebra" type="tns:SebraRequestType"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="CrearCleinteBiceResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="CifResponse" type="tns:CifResponseType"/>
+                        <xsd:element name="SebraResponse" type="tns:SebraResponseType"/>
+                        <xsd:element name="MagicResponse" type="tns:MagicResponse"/>
+                        <xsd:element name="OwpResponse" type="tns:OwpResponse"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:complexType name="CifRequestType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="COD_CANAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="GLOSA_APLICACION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="COD_SUCURSAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="COD_OPERADOR" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="TIPO_IDEN_CLIENTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="IDEN_CLIENTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="FEC_CREACION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_ROL_EMPLEADO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_JURIDI" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CLIENTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_CLIENTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SECTOR_ECONOM" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_CLIENTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_COR_DOMLEGAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_ACTIVIDAD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SECTOR" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CATDEU" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_RELA_BICE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_GRUP_RELA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_ESTA_DEUD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CARPETA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CASI_INTE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_SINO_SBIF" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_DECL_JURADA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_VERIF_DOMLEGAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFLG_FIRMA_COBPREJUD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_FIRMA_COBPREJUD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_TAX_ID" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SII_EXEIMP" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFLG_SII_CONTPRIMERACAT" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_ALERTA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_ALERTA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFLAG_MANDATO_INVERSION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_GIROSII" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_FRAUDE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFLG_EMPLEADO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_PATERNO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_MATERNO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_NOMBRES" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_NICKNAME" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_NACION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_RESIDENCIA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_PROFESION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_NACIM" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SEXO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_NIV_EDUCAC" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_ESTCIVIL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SEPBIENES" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CARGAS" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_ANTIG_VIV" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_DEFUNCION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_CERT_ECIVI" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_RAZON_SOCI" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_RAZON_SOCIAL_LEGAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_FANTASIA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_GRUPO_ECON" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_CONSTITUCION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_CLIEMPRESA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_WEB" type="xsd:string"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="DIRECCION" type="tns:direccion"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="EMAIL" type="tns:email"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="CONTACTO" type="tns:contacto"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPOCLI" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_SUBTIPOCLI" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CLAS_SEG" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CLAS_EDAD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_CLASIF" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CERTIFICA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PFEC_CERTIFICA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIP_CLI_CL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_FATCA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_INTIN" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_IDGIN" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_CLARIE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_PAGA_IVA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_AGRUPACION" type="xsd:string"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="GIRO" type="tns:giro"/>
+                    <xsd:element minOccurs="0" name="PCOD_OPERADOR_COMEX" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PRUT_CONYUGE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_CONYUGE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_EMPLEADOR" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_CARGO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PEMAIL_COMERCIAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_EJECUTIVO_INV" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_RELA_CORRE" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:complexType name="direccion">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="PCOD_CIUDAD" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_COMUNA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_PAIS" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_POSTAL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_REGION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPODIR" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_COMPLEMENTO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_DIRECCION" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_OFI_POST" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CASILLA" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_NUMERO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_SECUENCIA" type="xsd:string"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="TELEFONO" nillable="true"
+                                 type="tns:telefono"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="telefono">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="CODIGO_FONO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_FONO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_FONO" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="giro">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="PGLS_GIRO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_PRINCIPAL" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="email">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="PGLS_DIRMAIL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_SECUENCIA" type="xsd:decimal"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="contacto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="PCOD_CARGO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PCOD_TIPO_CONTACTO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PGLS_EMAIL" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_MATERNO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_NOMBRES" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNOM_PATERNO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CELULAR" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_CORRELATIVO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_FAX" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="PNUM_FONO" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="CifResponseType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="tns:cifInsupdCrearClienteOut"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="cifInsupdCrearClienteOut">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="CODIGO" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="MENSAJE" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="n_CIF_ID" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="n_ERROR" type="xsd:decimal"/>
+                    <xsd:element minOccurs="0" name="v_ERROR" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SebraRequestType">
+                <xsd:sequence>
+                    <xsd:element name="wsCreacionClientes" type="tns:wsCreacionClientes"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <!-- Definición del Pauyload de entrada para la creación -->
+            <xsd:complexType name="wsCreacionClientes">
+                <xsd:sequence>
+
+                    <!-- TIPO DE DOCUMENTO -->
+                    <xsd:element name="tipoDocumento" type="xsd:string" default="RUT" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Tipo de documento del cliente. Valores posibles: 'RUT': Rol
+                                Único Tributario, 'PAS': Pasaporte. Valor por defecto: 'RUT'
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="rut" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Número de documento del cliente. Ej.: 12564875- 4
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="cuenta" type="xsd:string" default="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Número cuenta asociada al cliente.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="tipoDeCuenta" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Tipo cuenta del cliente.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>PROPC57BIS: 57bis</li>
+                                        <li>PROPCACART: Administración Cartera</li>
+                                        <li>PROPCAPV: APV</li>
+                                        <li>PROPCINTER: Intermediación</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="estado" type="xsd:string" default="07" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Estado del cliente.
+                                <![CDATA[
+                                <ul>
+                                    <li>07: Vigente</li>
+                                    <li>08: Bloqueado</li>
+                                </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="nacionalidad" type="xsd:string" default="CL">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nacionalidad del cliente. ISO del país.
+                                <![CDATA[
+                                <ul>
+                                    <li>CL: Chile</li>
+                                    <li>AR: Argentina</li>
+                                </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="codigoAgente" type="xsd:string" default="0000" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código de agente en CRM. Ejemplo: 0001</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- CELULA_42: se agrega default -->
+                    <xsd:element name="naturalidad" type="xsd:string" default="NAT">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Indica si es persona jurídica o persona natural. Valores:
+                                <![CDATA[
+                                <ul>
+                                    <li>NAT: Natural</li>
+                                    <li>JUR: Jurídica</li>
+                                </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- CELULA_42: se agrega default -->
+                    <xsd:element minOccurs="0" name="tipCli" type="xsd:string" default="NAT">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Tipo de cliente.
+                                <![CDATA[
+                                <ul>
+                                    <li>NAT: Natural</ul>
+                                    <li>JUR: Jurídico</ul>
+                                </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="nombreFantasia" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nombre de fantasía del cliente, cuando es persona
+                                jurídica.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="razonSocial" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nombre cliente, cuando es persona jurídica. Obligatoriedad
+                                Condicional?
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="giro" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código del giro de la persona. Ver códigos de actividades
+                                económicas
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="apellidoPaterno" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Apellido paterno cliente, cuando es persona natural.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="apellidoMaterno" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Apellido Materno cliente, cuando es persona natural.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="nombres" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nombre del cliente, cuando es persona natural.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="fechaNacimiento" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Fecha de nacimiento del cliente, cuando es persona
+                                natural.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="segmentoCliente" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Segmento del cliente.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>SEGCOA: Segmento A</li>
+                                        <li>SEGCOB: Segmento B</li>
+                                        <li>SEGCOC: Segmento C</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="sexo" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Sexo del cliente, cuando es persona natural.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>F: Femenino</li>
+                                        <li>M: Masculino</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="estadoCivil" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Estado civil del cliente, cuando es persona natural.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>ECIVIACUER: Conviviente Civil</li>
+                                        <li>ECIVISOLTE: Soltero</li>
+                                        <li>ECIVIDIVOR: Divorciado</li>
+                                        <li>ECIVICASAD: Casado</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="regimenConyugal" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Régimen conyugal del cliente cuando es persona natural y
+                                está casado o tiene conviviente civil.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>RCONYCOMUN: Comunidad</li>
+                                        <li>RCONYPARTG: Part. Ganancias</li>
+                                        <li>RCONYSEPBI: Sep. Bienes</li>
+                                        <li>RCONYSINRE: Sin Régimen</li>
+                                        <li>RCONYSOCCO: Soc. Conyugal</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="profesion" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código profesión o actividad del cliente, cuando es
+                                persona natural. Ej.: 14: Agente Comercial
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="cargo" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cargo del cliente, cuando es persona natural y es
+                                trabajador dependiente.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="empleador" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Razón social del empleador del cliente, cuando es persona
+                                natural y es trabajador dependiente.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- Es la dirección obligatoria realmente o es opcional? -->
+                    <xsd:element maxOccurs="unbounded" name="direccion" nillable="true"
+                                 type="tns:direccionDto">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Direcciones asociadas al cliente.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="telefono" type="tns:telefonoDto" maxOccurs="unbounded">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Teléfonos asociados al cliente.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="email" nillable="true" type="tns:emailDto">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Emails asociados al cliente.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="cuentaBancaria" nillable="true"
+                                 type="tns:cuentaBancariaDto">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cuentas bancarias que pueda tener el cliente.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="personaRelasionada" nillable="true"
+                                 type="tns:personaRelacionadaDto">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Personas que están relacionadas con el cliente.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="plantillaCobro" type="xsd:string" default="DESCONOCID">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código plantilla de cobro del cliente. Ej: DESCONOCID
+                                (Desconocido)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- Plantilla de Producto, asociado al tipo de perfil comercial del cliente. -->
+                    <xsd:element minOccurs="0" name="plantillaProducto" type="xsd:string" default="DESCONOCID">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código plantilla de producto del cliente. Ej: DESCONOCID.
+                                (Desconocido). Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>AP: CLIENTE ADM DE CARTERA</li>
+                                        <li>AR: CLIENTE APV PRIME</li>
+                                        <li>AS: CLIENTE ADM SIN FICHA</li>
+                                        <li>AV: CLIENTE APV</li>
+                                        <li>BJ: CLIENTE BIA PERSONA JURIDICA</li>
+                                        <li>BN: CLIENTE BIA PERSONA NATURAL</li>
+                                        <li>BR: BICE RELACIONADOS</li>
+                                        <li>CB: BICE CORREDORES DE BOLSA</li>
+                                        <li>DJ: DOLARES PERSONA JURIDICA</li>
+                                        <li>DN: DOLARES PERSONA NATURAL</li>
+                                        <li>FR: PARA VENTA FFMM POR BOLSA</li>
+                                        <li>IN: CLIENTE INSTITUCIONAL</li>
+                                        <li>IS: CLIENTE INST SIN FECHA</li>
+                                        <li>MJ: MULTIPRODUCTO PERSONA JURIDICA</li>
+                                        <li>MN: MULTIPRODUCTO PERSONA NATURAL</li>
+                                        <li>NF: FONDO MUTUO PERSONA NATURAL</li>
+                                        <li>NJ: FONDO MUTUO PERSONA JURIDICA</li>
+                                        <li>PN: CLIENTE PORTAL DE INVERSIONES</li>
+                                        <li>RT: CLIENTE RETAIL SIN FICHA</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="modeloFacturacion" type="xsd:string" default="DESCONOCID">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código modelo de facturación. Ej: DESCONOCID
+                                (Desconocido)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="tipoOrden" type="xsd:string" default="NING">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código tipo de orden.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>CONV</li>
+                                        <li>CONT</li>
+                                        <li>NING</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="relaCorrCirc1064" type="xsd:string" default="RELACNINGU">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con la corredora Circ.1064.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>RELACADMIN: Administración</li>
+                                        <li>RELACLABOR: Laboral</li>
+                                        <li>RELACNINGU: Ninguna</li>
+                                        <li>RELACPROPI: Propiedad</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="ordenRecibir" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Tipo de orden a recibir. Ej.: S.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="periocidadCartolas" type="xsd:string" default="M" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Periodicidad de las cartolas.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="estadoCliente" type="xsd:string" default="07" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Estado de cuenta.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>07: Vigente</li>
+                                        <li>08: Bloqueado</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="estadoCuenta" type="xsd:string" minOccurs="0" default="15">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Estado de cuenta.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>14: Bloqueada</li>
+                                        <li>15: Vigente</li>
+                                        <li>17: Nueva</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="codCorredora" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código de la corredora. Ej.: 66</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="ingresosMoneda" type="xsd:string" minOccurs="0" default="CLP">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código de la moneda de los ingresos del último año que
+                                declara el cliente.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>ARS: PESO ARGENTINO</li>
+                                        <li>AUD: DOLAR AUSTRALIANO</li>
+                                        <li>CAD: DOLAR CANADIENSE</li>
+                                        <li>CHF: FRANCO SUIZO</li>
+                                        <li>CLP: PESOS</li>
+                                        <li>DKK: CORONA DANESA</li>
+                                        <li>GBP: LIBRA ESTERLINA</li>
+                                        <li>JPY: YEN JAPONES</li>
+                                        <li>NOK: CORONA NORUEGA</li>
+                                        <li>NZD: DOLAR NUEVA ZELANDA</li>
+                                        <li>SEK: CORONA SUECA</li>
+                                        <li>USD: DOLAR USA</li>
+                                        <li>ZAR: RAND SUDAFRICANO</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- El tipo está documentado como "float" pero está especificado como "int" -->
+                    <xsd:element name="ingresosMonto" type="xsd:integer">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Monto de los ingresos del último año que declara el
+                                cliente (valor decimal).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="ingresosAnio" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Año de los ingresos que declara el cliente.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="perPolitExp" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Indicador de persona políticamente expuesta.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="cliAutoEnrol" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Indicador de cliente auto-enrolado.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="generateAutoPassword" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Genera clave en forma automática al cliente.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="usuarioHabilitado" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Indicador que deja al usuario en CRM, en estado habilitado
+                                o no.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="enviaMailPassword" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Envía email de bienvenida al cliente, con usuario y clave
+                                para acceder al sistema SIGA CRM.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="perfilComercial" type="xsd:string" default="DESCONOCID" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Perfil Comercial asociado al cliente.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>PN: Persona Natural</li>
+                                        <li>PJ: Persona Jurídica</li>
+                                        <li>DESCONOCID: Desconocido</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="factElectronica" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Indica si recibe o no factura electrónica.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="paisResidencia" type="xsd:string" minOccurs="0" default="CL">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">País de residencia de la persona.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>CL: Chile</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="relaCorrNCG380" type="xsd:string" default="RELCONING" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con la corredora NCG 380.
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>RELCODIR: Director</li>
+                                        <li>RELCOMIEM: Miembro del Grupo Empresarial</li>
+                                        <li>RELCONING: Ninguna</li>
+                                        <li>RELCOOTRA: Otra</li>
+                                        <li>RELCOSOC: Socio</li>
+                                        <li>RELCOTRA: Trabajador</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="participacionSociedad" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Participación en sociedad del cliente. No aplica para
+                                corredores comunes
+                                Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="rutSociedad" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Rut de la sociedad (solo si tiene participación en
+                                sociedad). No aplica para corredores comunes Ej.: 12345678- 4 (solo si tiene
+                                participación en sociedad).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="razonSocialSociedad" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nombre de la sociedad (solo si tiene participación en
+                                sociedad). No aplica en corredores comunes
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- TODO: Agregar los códigos desde la tabla 10.6 -->
+                    <xsd:element name="giroSociedad" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código giro de la sociedad (solo si tiene participación
+                                en sociedad). No aplica en corredores comunes. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>3: Agricultura</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="porcParticipacionSociedad" type="xsd:double">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Porcentaje de participación en la sociedad (solo si tiene
+                                participación en sociedad). No aplica en corredores comunes
+                                Ej.: 20,35 (20,35 %)
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="rutEmpleador" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Rut del Empleador (Solo si la situación laboral de la
+                                persona es Dependiente). Ejemplo: "12345678- 4".
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="nomFantasiaEmpleador" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Nombre de fantasía del Empleador (Solo si la situación
+                                laboral de la persona es Dependiente).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <!-- TODO: Agregar los códigos desde la tabla 10.6 -->
+                    <xsd:element name="giroEmpleador" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código giro de la sociedad (Solo si la situación laboral
+                                de la persona es Dependiente). No aplica en corredores comunes.
+                                <![CDATA[
+                                    <ul>
+                                        <li>3: Agricultura</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="glei" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Código glei.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="clasificacionCliente" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Clasificación del Cliente. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>TCLIINS: Institucional</li>
+                                        <li>TCLIINTER: Interpósita persona</li>
+                                        <li>TCLIINVER: Inversionista</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="relaCorrArt100" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con la corredora Art.100. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="suscepConflicInt" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cliente susceptible a conflicto de interés.
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="manejaInfoPriv" type="xsd:string" default="N" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cliente maneja información privilegiada.
+                                <![CDATA[
+                                    <ul>
+                                        <li>S: Si</li>
+                                        <li>N: No</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+
+                    </xsd:element>
+
+                    <xsd:element name="cargoInfoPriv" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cargo SVS 171, cuando es persona natural y maneje
+                                información privilegiada. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>TCSVSGAREA: Gerente área</li>
+                                        <li>TCSVSGGRAL: Gerente general</li>
+                                        <li>TCSVSJMESA: Jefe mesa</li>
+                                        <li>TCSVSOMESA: Operador mesa</li>
+                                        <li>TCSVSORELA: Otro cargo</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="cargoCirc1064" type="xsd:string" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Cargo NCG 68-69, cuando es persona natural. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>TCNCGADMIN: Administrador</li>
+                                        <li>TCNCGAFINA: Asesor Financiero</li>
+                                        <li>TCNCGAPODE: Apoderado</li>
+                                        <li>TCNCGDIREC: Director</li>
+                                        <li>TCNCGGEREN: Gerente</li>
+                                        <li>TCNCGGEREN: Gerente</li>
+                                        <li>TCNCGOPERA: Operador</li>
+                                        <li>TCNCGOPERS: Otro cargo</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="relacionSII" type="xsd:string" default="RELSININGU" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con SII. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>RELSIADMIN: Administración</li>
+                                        <li>RELSININGU: Ninguna</li>
+                                        <li>RELSIOTROS: Otros</li>
+                                        <li>RELSIPARAI: Paraíso tributario</li>
+                                        <li>RELSIPROPI: Propiedad</li>
+                                        <li>TCNCGGEREN: Gerente</li>
+                                        <li>TCNCGOPERA: Operador</li>
+                                        <li>TCNCGOPERS: Otro cargo</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="relacionDCV" type="xsd:string" default="REDCVNOREL" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con DCV. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>REDCVNOREL: Tercero no relacionado</li>
+                                        <li>REDCVPROPI: Cuenta propia</li>
+                                        <li>REDCVRELAC: Tercero relacionado</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element name="relacionBCS" type="xsd:string" default="REBCSNOREL" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Relación del cliente con BCS. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>REBCSPROPI: Cuenta propia</li>
+                                        <li>REBCSRELAC: Tercero relacionado</li>
+                                        <li>REBCSNOREL: Tercero no relacionado</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="idSituacionLaboral" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation xml:lang="es">Parámetro identificador de la situación laboral de la
+                                persona. Valores:
+                                <![CDATA[
+                                    <ul>
+                                        <li>SILABCEMPL: Trabajador Dependiente</li>
+                                        <li>SILABINDEP: Trabajador Independiente</li>
+                                        <li>SILABOTR: Otro</li>
+                                        <li>SILABPEN: Pensionado</li>
+                                        <li>SILABSEMPL: Sin Empleo</li>
+                                        <li>SILABSOC: Participación en una sociedad</li>
+                                    </ul>
+                                ]]>
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="numRolEmpleado" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codCliente" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codSector" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codSucursal" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="flagEmpleado" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="ejecutivoComex" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codigoCanal" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="glosaAplicacion" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codOperador" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codTipoFatca" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codIntin" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codIdgin" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="fechaConstitucionEmpresa" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codTipoCliente" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codTipoCli" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codSubTipoCli" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="fechaCliente" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codNivEducac" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codTipoCliEmpresa" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codGrupoEcon" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="dirEmpleador" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="telEmpleador" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codigoCanalMagic" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="agencia" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="anexo" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="actividad" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="relacionado" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="flagEnvioCartola" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="flagEnvioConfirmacion" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="flagEnvioMarket" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="flagHabilitaInet" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="codEjecutivoInv" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="perfildeInversionista" type="xsd:string">
+
+                    </xsd:element>
+
+                    <xsd:element minOccurs="0" name="clienteOWP" type="xsd:string">
+
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="direccionDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="ciudad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="complemento" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="comuna" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="direccion" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="envioCorreo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="numero" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="pais" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="region" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoCalle" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="telefonoDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="codigo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="numero" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="observaciones" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="paisNumero" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoTelefono" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="emailDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="correoPrincipal" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="email" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="factElectronica" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipo" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="cuentaBancariaDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="banco" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="cuentaPrincipal" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="moneda" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="numero" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="sucursal" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoCuenta" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="personaRelacionadaDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="actividad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="apellidoMaterno" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="apellidoMaternoConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="apellidoPaterno" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="apellidoPaternoConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="cargo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="codSuc" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="comuna" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="comunaConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="direccion" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="direccionConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="direccionNumero" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="direccionNumeroConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="email" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="emailConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="estadoCivil" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="fecha" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="fechaNacimiento" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="fin" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="giroEmpleador" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="giroSociedad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="glei" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="inicio" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nacionalidad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nacionalidadConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="naturalidad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nombreFantasia" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nombreFantasiaEmpleador" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nombres" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="nombresConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="paisResidencia" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="participaSociedad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="porcentajePartiSociedad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="razonSocial" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="razonSocialEmpleador" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="razonSocialSociedad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="regimenConyugal" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="relacionCorrArt100" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="relacionCorrArt100Conyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="rut" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="rutConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="rutEmpleador" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="rutSociedad" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="sexo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="situacionLaboral" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="telefono" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="telefonoConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tieneConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoRelacionConyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoRelacionCorrNCG380" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="tipoRelacionCorrNCG380Conyuge" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="codOperador" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="SebraResponseType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="tns:respuestaDto"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="respuestaDto">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="codigo" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="mensaje" type="xsd:string"/>
+                    <xsd:element minOccurs="0" name="cifId" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="estado">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="codigo" type="xsd:int"/>
+                    <xsd:element minOccurs="0" name="mensaje" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="MagicResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="tns:estado"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="OwpResponse">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="return" type="tns:estado"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </WL5G3N0:types>
+
+
+    <WL5G3N0:message name="CrearCleinteBiceRequest">
+        <WL5G3N0:documentation>Mensaje de entrada (Payload de entrada)</WL5G3N0:documentation>
+        <WL5G3N0:part element="WL5G3N1:CrearCleinteBice" name="parameters"/>
+    </WL5G3N0:message>
+    <WL5G3N0:message name="CrearCleinteBiceResponse">
+        <WL5G3N0:documentation>Mensaje de salida de la operación de creación de clientes.</WL5G3N0:documentation>
+        <WL5G3N0:part element="WL5G3N1:CrearCleinteBiceResponse" name="parameters"/>
+    </WL5G3N0:message>
+
+    <!-- Puertos expuestos -->
+    <WL5G3N0:portType name="CrearClienteBice">
+        <WL5G3N0:documentation>Esta interfaz provee una única operación que permite crear un cliente.
+        </WL5G3N0:documentation>
+
+        <!-- Operación para crear un cliente -->
+        <WL5G3N0:operation name="CrearCleinteBice">
+            <WL5G3N0:documentation>Esta operación permite crear un cliente BICE en el sistema SalesForce.
+            </WL5G3N0:documentation>
+            <WL5G3N0:input message="WL5G3N1:CrearCleinteBiceRequest">
+                <WL5G3N0:documentation>Mensaje de entrada (Payload de entrada)</WL5G3N0:documentation>
+            </WL5G3N0:input>
+            <WL5G3N0:output message="WL5G3N1:CrearCleinteBiceResponse">
+                <WL5G3N0:documentation>Mensaje de salida de la operación de creación de clientes.
+                </WL5G3N0:documentation>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+
+    </WL5G3N0:portType>
+
+    <WL5G3N0:binding name="CrearClienteBiceSOAP" type="WL5G3N1:CrearClienteBice">
+        <WL5G3N2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <WL5G3N0:operation name="CrearCleinteBice">
+            <WL5G3N2:operation soapAction="http://www.example.org/CrearClienteBice/CrearCleinteBice"/>
+            <WL5G3N0:input>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:input>
+            <WL5G3N0:output>
+                <WL5G3N2:body use="literal"/>
+            </WL5G3N0:output>
+        </WL5G3N0:operation>
+    </WL5G3N0:binding>
+
+    <!-- Declaración del servicio -->
+    <WL5G3N0:service name="CrearClienteBiceSOAPQSService">
+        <WL5G3N0:documentation>Creación de Clientes BICE</WL5G3N0:documentation>
+        <WL5G3N0:port binding="WL5G3N1:CrearClienteBiceSOAP" name="CrearClienteBiceSOAPQSPort">
+            <WL5G3N2:address location="http://sf.bice.cl:80/bus/CrearClienteBICEFacade/Crear"/>
+        </WL5G3N0:port>
+    </WL5G3N0:service>
+</WL5G3N0:definitions>
