@@ -99,13 +99,16 @@ public class TransformerXLST {
      * @throws TransformerException Throw if the XSTL could not make the transformation.
      * @throws IOException          Thrown if there is a problem connecting to the URL's content.
      */
-    @Deprecated
-    void transform(URL wsdlURL, Writer printStream) throws TransformerException, IOException {
+    public void transform(URL wsdlURL, Writer printStream) throws TransformerException, IOException {
 
         /* The URL is read and a stream is created to it */
         StreamSource xmlSource = new StreamSource(new InputStreamReader(wsdlURL.openStream()));
 
         /* The transformation is made with the base method */
         this.transformer.transform(xmlSource, new StreamResult(printStream));
+    }
+
+    public void transform(StreamSource wsdlSource, PrintWriter printStream) throws TransformerException {
+        this.transformer.transform(wsdlSource, new StreamResult(printStream));
     }
 }

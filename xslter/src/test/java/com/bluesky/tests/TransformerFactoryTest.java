@@ -30,7 +30,7 @@ public class TransformerFactoryTest {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         transformerFactory.newTransformer(new StreamSource(xsltInputStream));
-        logger.info("Trasnformer={}", transformerFactory);
+        logger.info("Transformer={}", transformerFactory);
     }
 
     public static void writeFileToStream(InputStream input, PrintStream out) throws IOException {

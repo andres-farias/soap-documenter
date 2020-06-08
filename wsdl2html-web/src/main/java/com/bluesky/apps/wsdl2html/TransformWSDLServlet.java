@@ -1,7 +1,6 @@
 package com.bluesky.apps.wsdl2html;
 
 import cl.bice.apps.wsdl2html.TransformerXLST;
-import com.bluesky.utils.files.FileUtils;
 import com.bluesky.utils.http.QueryStringParser;
 import com.bluesky.utils.http.URLUtils;
 import org.apache.logging.log4j.LogManager;
@@ -31,8 +30,6 @@ public class TransformWSDLServlet extends HttpServlet {
 
     /** The logger for this class */
     private static final Logger logger = LogManager.getLogger(TransformWSDLServlet.class);
-
-    private static final String OUTPUT_FILE_LOCATION = "./out/output.html";
 
     /**
      * The query string name that is to be used on the querystring section of the URL's requests
@@ -65,33 +62,25 @@ public class TransformWSDLServlet extends HttpServlet {
         /* The XSLT transformation is loaded into the Transformer instance */
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         InputStream input = classLoader.getResourceAsStream("wsdl-viewer.xsl");
-        //FileUtils.writeFileToStream(input, System.out);
         TransformerXLST transformerXLST;
 
         try {
-            //transformerXLST = new TransformerXLST(input);
-            transformerXLST = new TransformerXLST();
+            transformerXLST = new TransformerXLST(input);
         } catch (TransformerConfigurationException confException) {
             String errorMessage = "There was an error while processing the XSLT document.";
             logger.error(errorMessage, confException);
             throw new ServletException(errorMessage, confException);
         }
 
-        /* The WSDL's HTML documentation is written to the HTTP response */
-        File outputWSDLHTMLContent = new File(OUTPUT_FILE_LOCATION);
-
         /* Transforming to HTML documentation */
+        PrintWriter writer = resp.getWriter();
         try {
-            transformerXLST.transform(new StreamSource(wsdl), outputWSDLHTMLContent);
+            transformerXLST.transform(new StreamSource(wsdl), writer);
         } catch (TransformerException transformationException) {
             String errorMessage = "There was an error while transforming the WSDL document.";
             logger.error(errorMessage, transformationException);
             throw new ServletException(errorMessage, transformationException);
         }
-
-        /* Then it's written to the response "as is" */
-        PrintWriter writer = resp.getWriter();
-        FileUtils.writeToFile(outputWSDLHTMLContent, writer);
 
         logger.info("WSDL successfully generated!");
     }
