@@ -1,159 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-/**
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
- * cl.bice.apps.wsdl2html.http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
--->
-
-
-<!--
-* ====================================================================
-* wsdl-viewer.xsl
-* Version: 3.1.02
-*
-* URL: cl.bice.apps.wsdl2html.http://tomi.vanek.sk/xml/wsdl-viewer.xsl
-*
-* Author: tomi vanek
-* Inspiration: Uche Ogbui - WSDL processing with XSLT
-* 		cl.bice.apps.wsdl2html.http://www-106.ibm.com/developerworks/library/ws-trans/index.html
-* ====================================================================
--->
-
-
-<!--
-* ====================================================================
-* Description:
-* 		wsdl-viewer.xsl is a lightweight XSLT 1.0 transformation with minimal
-* 		usage of any hacks that extend the possibilities of the transformation
-* 		over the XSLT 1.0 constraints but eventually would harm the engine independance.
-*
-* 		The transformation has to run even in the browser offered XSLT engines
-* 		(tested in IE 6 and Firefox) and in ANT "batch" processing.
-* ====================================================================
-* How to add the HTML look to a WSDL:
-* 		<?xml version="1.0" encoding="utf-8"?>
-* 		<?xml-stylesheet type="text/xsl" href="wsdl-viewer.xsl"?>
-* 		<wsdl:definitions ...>
-* 		    ... Here is the service declaration
-* 		</wsdl:definitions>
-*
-* 		The web-browsers (in Windows) are not able by default automatically recognize
-* 		the ".wsdl" file type (suffix). For the type recognition the WSDL file has
-* 		to be renamed by adding the suffix ".xml" - i.e. "myservice.wsdl.xml".
-* ====================================================================
-* Constraints:
-* 	1. Processing of imported files
-* 		1.1 Only 1 imported WSDL and 1 imported XSD is processed
-* 			(well, maybe with a smarter recursive strategy this restriction could be overcome)
-* 		1.2 No recursive including is supported (i.e. includes in included XSD are ignored)
-* 	2. Namespace support
-* 		2.1 Namespaces are not taken in account by processing (references with NS)
-* 	3. Source code
-* 		3.1 Only the source code allready processed by the XML parser is rendered - implications:
-* 			== no access to the XML head line (<?xml version="1.0" encoding="utf-8"?>)
-* 			== "expanded" CDATA blocks (parser processes the CDATA,
-* 				XSLT does not have access to the original code)
-* 			== no control over the code page
-* 			== processing of special characters
-* 			== namespace nodes are not rendered (just the namespace aliases)
-* ====================================================================
-* Possible improvements:
-* 	* Functional requirements
-* 		+ SOAP 1.2 binding (cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/soap12/WSDL11SOAP12.pdf)
-* 		+ WSDL 2.0 (cl.bice.apps.wsdl2html.http://www.w3.org/TR/2006/CR-wsdl20-primer-20060327/)
-* 		+ Recognition of WSDL patterns (interface, binding, service instance, ...)
-* 		- Creating an xsd-viewer.xsl for XML-Schema file viewing
-* 			(extracting the functionality from wsdl-viewer into separate XSLT)
-* 		- Check the full support of the WSDL and XSD going through the standards
-* 		- Real-world WSDL testing
-* 		- XSLT 2.0 (cl.bice.apps.wsdl2html.http://www-128.ibm.com/developerworks/library/x-xslt20pt5.html) ???
-* 		? Adding more derived information
-* 			* to be defined, what non-trivial information can we read out from the WSDL
-* 	* XSLT
-* 		+ Modularization
-* 			- Is it meaningful?
-* 			- Maybe more distribution alternatives (modular, fat monolithic, thin performance monolithic)?
-* 			- Distribution build automatization
-* 		+ Dynamic page: JavaSript
-* 		+ Performance
-* 		- Better code comments / documentation
-* 		- SOAP client form - for testing the web service (AJAX based)
-* 		- New XSD parser - clean-up the algorithm
-* 		- Complete (recursive, multiple) include support
-* 		? Namespace-aware version (no string processing hacks ;-)
-* 			* I think, because of the goal to support as many engines as possible,
-* 				this requirement is unrealistic. Maybe when XSLT 2.0 will be supported
-* 				in a huge majority of platforms, we can rethink this point....
-* 				(problems with different functionality of namespace-uri XPath function by different engines)
-* 	* Development architecture
-* 		- Setup of the development infrastructure
-* 		- Unit testing
-* 		? Collaboration platform
-* 	* Documentation, web
-* 		- Better user guide
-* 		? Forum, Wiki
-* ====================================================================
--->
-
-
-<!--
-* ====================================================================
-* History:
-* 	2005-04-15 - Initial implementation
-* 	2005-09-12 - Removed xsl:key to be able to use the James Clark's XT engine on W3C web-site
-* 	2006-10-06 - Removed the Oliver Becker's method of conditional selection
-* 				of a value in a single expression (in Xalan/XSLTC this hack does not work!)
-* 	2005-10-07 - Duplicated operations
-* 	2006-12-08 - Import element support
-* 	2006-12-14 - Displays all fault elements (not just the first one)
-* 	2006-12-28 - W3C replaced silently the James Clark's XT engine with Michael Kay's closed-source Saxon!
-* 				wsdl-viewer.xsl will no longer support XT engine
-* 	2007-02-28 - Stack-overflow bug (if the XSD element @name and @type are identic)
-* 	2007-03-08 - 3.0.00 - New parsing, new layout
-* 	2007-03-28 - 3.0.01 - Fix: New anti-recursion defense (no error message by recursion
-* 						because of dirty solution of namespace processing)
-* 						- Added: variables at the top to turn on/off certain details
-* 	2007-03-29 - 3.0.02 - Layout clean-up for IE
-* 	2007-03-29 - 3.0.03 - Fix: Anti-recursion algorithm
-* 	2007-03-30 - 3.0.04 - Added: source code rendering of imported WSDL and XSD
-* 	2007-04-15 - 3.0.05 - Fix: Recursive calls in element type rendering
-* 						- Fix: Rendering of messages (did not render the message types of complex types)
-* 						- Fix: Links in src. by arrays
-* 						- Fix: $binding-info
-* 	2007-04-15 - 3.0.06 - Added: Extended rendering control ENABLE-xxx parameters
-* 						- Changed: Anti-recursion algorithm has recursion-depth parameter
-* 	2007-07-19 - 3.0.07 - Fix: Rendering of array type in detail
-* 	2007-08-01 - 3.0.08 - Fix: xsl:template name="render-type"
-* 						  Fix: typo - "Impotred WSDL" should be "Impotred WSDL"
-* 	2007-08-16 - 3.0.09 - Fix: xsl:template name="render-type" - anti recursion
-* 	2007-12-05 - 3.1.00 - Modularized
-* 	2007-12-23 - 3.1.01 - Terminating message by WS without interface or service definition was removed
-* 						  (seems to be a correct state)
-* 	2008-08-20 - 3.1.02 - Woden-214: Anti-recursion bypassed in xsd:choice element
-* 	2019-01-03 - 3.1.03 - Fix for `small` tag - recursively smaller text
-* ====================================================================
--->
-<xsl:stylesheet xmlns:xsl="cl.bice.apps.wsdl2html.http://www.w3.org/1999/XSL/Transform"
-                xmlns="cl.bice.apps.wsdl2html.http://www.w3.org/1999/xhtml"
-                xmlns:ws="cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/"
-                xmlns:ws2="cl.bice.apps.wsdl2html.http://www.w3.org/ns/wsdl"
-                xmlns:xsd="cl.bice.apps.wsdl2html.http://www.w3.org/2001/XMLSchema"
-                xmlns:soap="cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/soap/"
-                xmlns:local="cl.bice.apps.wsdl2html.http://tomi.vanek.sk/xml/wsdl-viewer"
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ws="http://schemas.xmlsoap.org/wsdl/"
+                xmlns:ws2="http://www.w3.org/ns/wsdl"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:local="http://tomi.vanek.sk/xml/wsdl-viewer"
                 version="1.0"
                 exclude-result-prefixes="ws ws2 xsd soap local">
 
@@ -810,12 +662,12 @@ h3 {
       <div>
 	This page has been generated by <big>wsdl-viewer.xsl</big>, version <xsl:value-of select="$version"/>
          <br/>
-	Author: <a href="cl.bice.apps.wsdl2html.http://tomi.vanek.sk/">tomi vanek</a>
+	Author: <a href="http://tomi.vanek.sk/">tomi vanek</a>
          <br/>
-	Download at <a href="cl.bice.apps.wsdl2html.http://tomi.vanek.sk/xml/wsdl-viewer.xsl">cl.bice.apps.wsdl2html.http://tomi.vanek.sk/xml/wsdl-viewer.xsl</a>.<br/>
+	Download at <a href="http://tomi.vanek.sk/xml/wsdl-viewer.xsl">http://tomi.vanek.sk/xml/wsdl-viewer.xsl</a>.<br/>
 	        <br/>
 	The transformation was inspired by the article<br/>
-	Uche Ogbuji: <a href="cl.bice.apps.wsdl2html.http://www-106.ibm.com/developerworks/library/ws-trans/index.html">WSDL processing with XSLT</a>
+	Uche Ogbuji: <a href="http://www-106.ibm.com/developerworks/library/ws-trans/index.html">WSDL processing with XSLT</a>
          <br/>
       </div>
    </xsl:template>
@@ -869,16 +721,16 @@ h3 {
 	     <xsl:variable name="binding-protocol" select="$binding/@*[local-name() = 'protocol']"/>
 	     <xsl:variable name="protocol">
 		       <xsl:choose>
-			         <xsl:when test="starts-with($binding-type, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/soap')">SOAP 1.1</xsl:when>
-			         <xsl:when test="starts-with($binding-type, 'cl.bice.apps.wsdl2html.http://www.w3.org/2005/08/wsdl/soap')">SOAP 1.2</xsl:when>
-			         <xsl:when test="starts-with($binding-type, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/mime')">MIME</xsl:when>
-			         <xsl:when test="starts-with($binding-type, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/cl.bice.apps.wsdl2html.http')">HTTP</xsl:when>
+			         <xsl:when test="starts-with($binding-type, 'http://schemas.xmlsoap.org/wsdl/soap')">SOAP 1.1</xsl:when>
+			         <xsl:when test="starts-with($binding-type, 'http://www.w3.org/2005/08/wsdl/soap')">SOAP 1.2</xsl:when>
+			         <xsl:when test="starts-with($binding-type, 'http://schemas.xmlsoap.org/wsdl/mime')">MIME</xsl:when>
+			         <xsl:when test="starts-with($binding-type, 'http://schemas.xmlsoap.org/wsdl/http')">HTTP</xsl:when>
 			         <xsl:otherwise>Unknown</xsl:otherwise>
 		       </xsl:choose>
 
 		       <!-- TODO: Add all bindings to transport protocols -->
 		<xsl:choose>
-			         <xsl:when test="starts-with($binding-protocol, 'cl.bice.apps.wsdl2html.http://www.w3.org/2003/05/soap/bindings/HTTP')"> over HTTP</xsl:when>
+			         <xsl:when test="starts-with($binding-protocol, 'http://www.w3.org/2003/05/soap/bindings/HTTP')"> over HTTP</xsl:when>
 			         <xsl:otherwise/>
 		       </xsl:choose>
 	     </xsl:variable>
@@ -953,9 +805,9 @@ h3 {
                     select="namespace-uri( $binding/*[local-name() = 'binding'] )"/>
 	     <xsl:variable name="protocol">
 		       <xsl:choose>
-			         <xsl:when test="starts-with($binding-uri, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/soap')">SOAP</xsl:when>
-			         <xsl:when test="starts-with($binding-uri, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/mime')">MIME</xsl:when>
-			         <xsl:when test="starts-with($binding-uri, 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/wsdl/cl.bice.apps.wsdl2html.http')">HTTP</xsl:when>
+			         <xsl:when test="starts-with($binding-uri, 'http://schemas.xmlsoap.org/wsdl/soap')">SOAP</xsl:when>
+			         <xsl:when test="starts-with($binding-uri, 'http://schemas.xmlsoap.org/wsdl/mime')">MIME</xsl:when>
+			         <xsl:when test="starts-with($binding-uri, 'http://schemas.xmlsoap.org/wsdl/http')">HTTP</xsl:when>
 			         <xsl:otherwise>unknown</xsl:otherwise>
 		       </xsl:choose>
 	     </xsl:variable>
@@ -1040,7 +892,7 @@ h3 {
 		       <div class="label">Transport protocol:</div>
 		       <div class="value">
 			         <xsl:choose>
-				           <xsl:when test="$protocol = 'cl.bice.apps.wsdl2html.http://schemas.xmlsoap.org/soap/cl.bice.apps.wsdl2html.http'">SOAP over HTTP</xsl:when>
+				           <xsl:when test="$protocol = 'http://schemas.xmlsoap.org/soap/http'">SOAP over HTTP</xsl:when>
 				           <xsl:otherwise>
                   <xsl:value-of select="$protocol"/>
                </xsl:otherwise>
@@ -2143,7 +1995,7 @@ h3 {
 					result of a namespace declaration.  Note that this doesn't reflect the actual
 					source - it will strip out redundant namespace declarations.
 				-->
-			<xsl:for-each select="namespace::*[. != 'cl.bice.apps.wsdl2html.http://www.w3.org/XML/1998/namespace']">
+			<xsl:for-each select="namespace::*[. != 'http://www.w3.org/XML/1998/namespace']"> 
 				           <xsl:if test="not($current/parent::*[namespace::*[. = current()]])">
 					             <div class="xml-att">
 						               <xsl:text> xmlns</xsl:text>
@@ -2241,12 +2093,12 @@ h3 {
 	        <title>
             <xsl:value-of select="concat($html-title, ' - ', 'Generated by wsdl-viewer.xsl')"/>
          </title>
-	        <meta cl.bice.apps.wsdl2html.http-equiv="content-type" content="text/html; charset=utf-8"/>
-	        <meta cl.bice.apps.wsdl2html.http-equiv="content-script-type" content="text/javascript"/>
-	        <meta cl.bice.apps.wsdl2html.http-equiv="content-style-type" content="text/css"/>
-	        <meta name="Generator" content="cl.bice.apps.wsdl2html.http://tomi.vanek.sk/xml/wsdl-viewer.xsl"/>
+	        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	        <meta http-equiv="content-script-type" content="text/javascript"/>
+	        <meta http-equiv="content-style-type" content="text/css"/>
+	        <meta name="Generator" content="http://tomi.vanek.sk/xml/wsdl-viewer.xsl"/>
 
-	        <meta cl.bice.apps.wsdl2html.http-equiv="imagetoolbar" content="false"/>
+	        <meta http-equiv="imagetoolbar" content="false"/>
 	        <meta name="MSSmartTagsPreventParsing" content="true"/>
 
 	        <style type="text/css">
@@ -2375,7 +2227,7 @@ h3 {
 
 <xsl:template name="footer.render">
       <div id="footer">
-	This page was generated by wsdl-viewer.xsl (<a href="cl.bice.apps.wsdl2html.http://tomi.vanek.sk">cl.bice.apps.wsdl2html.http://tomi.vanek.sk</a>)
+	This page was generated by wsdl-viewer.xsl (<a href="http://tomi.vanek.sk">http://tomi.vanek.sk</a>)
 </div>
    </xsl:template>
 
