@@ -44,7 +44,7 @@ public class TransformerXLST {
      * @param xsltInputStream The input stream from where the XSLT is read.
      * @throws TransformerConfigurationException Thrown if the XSLT file is not valid for transforming anything.
      */
-    TransformerXLST(InputStream xsltInputStream) throws TransformerConfigurationException {
+    public TransformerXLST(InputStream xsltInputStream) throws TransformerConfigurationException {
         TransformerFactory factory = TransformerFactory.newInstance();
         this.transformer = factory.newTransformer(new StreamSource(xsltInputStream));
         logger.info("XLST Transformer was successfully read and validated.");
@@ -70,7 +70,7 @@ public class TransformerXLST {
      * @param outputFile The output file where the result is to be written.
      * @throws TransformerException Throw if the XSTL could not make the transformation.
      */
-    void transform(Source wsdlSource, File outputFile) throws TransformerException {
+    public void transform(Source wsdlSource, File outputFile) throws TransformerException {
         this.transformer.transform(wsdlSource, new StreamResult(outputFile));
     }
 
