@@ -1,7 +1,7 @@
 package com.bluesky.apps.wsdl2html;
 
 import cl.bice.apps.wsdl2html.TransformerXLST;
-import cl.bice.utils.files.FileUtils;
+import com.bluesky.utils.files.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
