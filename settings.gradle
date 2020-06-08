@@ -1,4 +1,5 @@
 rootProject.name = 'soap-documenter'
 
 include 'XSLTer'
+include 'wsdl2html-web'
 
